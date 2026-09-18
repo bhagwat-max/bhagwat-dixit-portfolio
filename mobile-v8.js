@@ -106,3 +106,99 @@
   new MutationObserver(() => { if(stopped()) resetTouch(); }).observe(root,{attributes:true,attributeFilter:['class']});
   setMode();
 })();
+
+/* mobile-motion-v9: independent reveals and lightweight project parallax. */
+(() => {
+  'use strict';
+  const root = document.documentElement;
+  const mobile = matchMedia('(max-width: 700px)');
+  const targets = [...document.querySelectorAll('.section-top,.section-heading,.project,.more-work,.about-aside,.about-copy,.service,.contact-main,.contact-bottom,.footer')];
+  const covers = [...document.querySelectorAll('.project-cover')];
+  let observer;
+  let frame = 0;
+  const clamp = (min,value,max) => Math.max(min,Math.min(max,value));
+  const stopped = () => root.classList.contains('motion-paused');
+
+  targets.forEach((item,index) => {
+    item.classList.add('v9-reveal');
+    item.style.setProperty('--v9-delay',`${(index%4)*55}ms`);
+  });
+
+  function revealAll(){
+    targets.forEach(item => item.classList.add('v9-show'));
+  }
+
+  function setupReveals(){
+    observer?.disconnect();
+    if(!mobile.matches||stopped()||!('IntersectionObserver' in window)){
+      revealAll();
+      return;
+    }
+    targets.forEach(item => item.classList.remove('v9-show'));
+    observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('v9-show');
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:.08,rootMargin:'0px 0px -7% 0px'});
+    targets.forEach(item=>{
+      const box=item.getBoundingClientRect();
+      if(box.top<innerHeight*.94&&box.bottom>0)item.classList.add('v9-show');
+      else observer.observe(item);
+    });
+  }
+
+  function paintCards(){
+    frame=0;
+    if(!mobile.matches||stopped())return;
+    const viewport=innerHeight||1;
+    covers.forEach(cover=>{
+      const box=cover.getBoundingClientRect();
+      if(box.bottom<0||box.top>viewport)return;
+      const offset=clamp(-1,(box.top+box.height/2-viewport/2)/(viewport+box.height),1);
+      cover.style.setProperty('--v9-card-y',`${(-offset*7).toFixed(2)}px`);
+      cover.style.setProperty('--v9-card-rx',`${(offset*1.4).toFixed(2)}deg`);
+      cover.style.setProperty('--v9-image-y',`${(offset*10).toFixed(2)}px`);
+      cover.style.setProperty('--v9-inner-y',`${(-offset*5).toFixed(2)}px`);
+    });
+  }
+
+  function queueCards(){
+    if(!frame)frame=requestAnimationFrame(paintCards);
+  }
+
+  covers.forEach(cover=>{
+    let release=0;
+    const press=event=>{
+      if(!mobile.matches||stopped())return;
+      const touch=event.touches?.[0];
+      const x=touch?.clientX??event.clientX;
+      const y=touch?.clientY??event.clientY;
+      const box=cover.getBoundingClientRect();
+      cover.style.setProperty('--v9-touch-x',`${clamp(0,(x-box.left)/box.width*100,100).toFixed(1)}%`);
+      cover.style.setProperty('--v9-touch-y',`${clamp(0,(y-box.top)/box.height*100,100).toFixed(1)}%`);
+      clearTimeout(release);
+      cover.classList.add('v9-pressed');
+    };
+    const lift=()=>{
+      clearTimeout(release);
+      release=setTimeout(()=>cover.classList.remove('v9-pressed'),180);
+    };
+    cover.addEventListener('touchstart',press,{passive:true});
+    cover.addEventListener('touchend',lift,{passive:true});
+    cover.addEventListener('touchcancel',lift,{passive:true});
+  });
+
+  function setMode(){
+    setupReveals();
+    queueCards();
+  }
+
+  window.addEventListener('scroll',queueCards,{passive:true});
+  window.addEventListener('resize',queueCards,{passive:true});
+  mobile.addEventListener('change',setMode);
+  new MutationObserver(()=>{if(stopped())revealAll();}).observe(root,{attributes:true,attributeFilter:['class']});
+  requestAnimationFrame(setMode);
+})();
