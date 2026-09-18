@@ -1,0 +1,16 @@
+/* Ambient colour across the portfolio; layered motion only in the heading. */
+body{background-color:#111014;background-image:radial-gradient(ellipse 85% 18% at 100% 5%,#ff633326,transparent 75%),radial-gradient(ellipse 90% 22% at 0% 20%,#8861da28,transparent 75%),radial-gradient(ellipse 85% 22% at 100% 48%,#b65d3820,transparent 75%),radial-gradient(ellipse 90% 20% at 0% 75%,#8861da30,transparent 75%),linear-gradient(155deg,#121115,#17121b 52%,#131015);background-repeat:no-repeat}
+.ticker{background:linear-gradient(100deg,#241a22e8,#1e1829e8 55%,#2c1b19e8)}
+.about-section{background:radial-gradient(ellipse at 0% 25%,#d3c4ed99,transparent 65%),radial-gradient(ellipse at 100% 90%,#f8c6a699,transparent 65%),linear-gradient(125deg,#eeece7,#e7e1eb 50%,#f3e9df)}
+.contact-section{background:radial-gradient(ellipse at 95% 5%,#ffd499aa,transparent 65%),linear-gradient(115deg,#ff7346,#ff9463 55%,#efa185)}
+.footer{background:transparent}
+.hero-copy{perspective:1100px}
+.hero h1{transform-style:preserve-3d;transform:rotateX(var(--title-rx,0deg)) rotateY(var(--title-ry,0deg));transform-origin:38% 50%;transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.hero h1 .line{overflow:visible;transform-style:preserve-3d;transform-origin:left center;animation:title-depth 8s ease-in-out infinite;--depth:8px;--lift:-4px;text-shadow:1px 1px 0 #8d8992,2px 2px 0 #68636d,3px 3px 0 #46414b,0 12px 24px #0004}
+.hero h1 .line:nth-child(2){--depth:16px;--lift:-6px;animation-delay:-2.6s}
+.hero h1 .line:nth-child(3){--depth:24px;--lift:-5px;animation-delay:-5.2s;text-shadow:1px 1px 0 #c44624,2px 2px 0 #a73823,3px 3px 0 #772b26,0 12px 28px #ff63331a}
+@keyframes title-depth{0%,100%{transform:translate3d(0,0,var(--depth)) rotateY(-1deg)}50%{transform:translate3d(0,var(--lift),calc(var(--depth) + 8px)) rotateY(1deg)}}
+html.motion-paused .hero h1{transform:none;transition:none}
+html.motion-paused .hero h1 .line{animation:none;transform:none}
+@media(max-width:700px){.hero h1 .line{--depth:0px!important;--lift:-3px!important;text-shadow:1px 1px #77717b,2px 2px #46414b,0 8px 16px #0003}.hero h1 .line:nth-child(3){text-shadow:1px 1px #b94a2c,2px 2px #772b26,0 8px 16px #0003}@keyframes title-depth{0%,100%{transform:translateY(0) rotateY(-.5deg)}50%{transform:translateY(-3px) rotateY(.5deg)}}}
+@media(prefers-reduced-motion:reduce){.hero h1,.hero h1 .line{animation:none!important;transform:none!important;transition:none!important}}

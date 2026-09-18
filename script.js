@@ -7,10 +7,8 @@
   const label = document.getElementById('motion-label');
   const art = document.querySelector('.art-frame');
   const hero = document.querySelector('.hero-stage');
-  const progress = document.querySelector('.scroll-progress');
   const cursor = document.querySelector('.project-cursor');
   let paused = motionQuery.matches;
-  let scrollPending = false;
   let pointerPending = false;
   let pointerX = 0, pointerY = 0;
   let artX = 0, artY = 0;
@@ -44,16 +42,6 @@
     }, { threshold: .07 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   }
-  function updateProgress() {
-    const length = document.documentElement.scrollHeight - window.innerHeight;
-    progress.style.transform = `scaleX(${length > 0 ? Math.min(1, window.scrollY / length) : 0})`;
-    scrollPending = false;
-  }
-  window.addEventListener('scroll', () => {
-    if (!scrollPending) { scrollPending = true; requestAnimationFrame(updateProgress); }
-  }, { passive: true });
-  window.addEventListener('resize', updateProgress);
-  updateProgress();
   if (finePointer.matches) {
     document.addEventListener('pointermove', event => {
       if (paused) return;
