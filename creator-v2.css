@@ -1,0 +1,39 @@
+/* Bhagwat portfolio: scoped navbar + layered creator hero update. */
+.header .brand.bd-logo{display:inline-flex;align-items:flex-start;gap:12px;min-width:105px;min-height:54px;padding:2px 0;letter-spacing:0}
+.header .bd-logo .bd-letters{font-family:'Space Grotesk',Arial,sans-serif;font-size:3.5rem;font-weight:500;line-height:.86;letter-spacing:-.14em;margin:0;color:var(--fg)}
+.header .bd-logo .bd-spark{width:30px;height:30px;margin:0 0 0 4px;color:var(--accent);overflow:visible;transition:transform .65s cubic-bezier(.22,1,.36,1)}
+.header .bd-logo:hover .bd-spark{transform:rotate(90deg)}
+.hero-art.creator-scene{width:58%;height:580px;right:-10px;top:20px;perspective:1100px;isolation:isolate}
+.creator-scene:before{content:'';position:absolute;inset:12% 4% 4%;background:radial-gradient(ellipse at 65% 50%,#ff633329,transparent 64%),radial-gradient(ellipse at 22% 38%,#8b66ff23,transparent 60%);border-radius:50%;filter:blur(24px);pointer-events:none}
+.creator-scene .art-frame{width:100%;height:100%;animation:none;transition:transform .6s cubic-bezier(.22,1,.36,1);transform-style:preserve-3d}
+.creator-depth{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateX(var(--creator-rx,0deg)) rotateY(var(--creator-ry,0deg));transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.creator-figure{position:absolute;inset:3% -4% 0 4%;transform:translateZ(30px);pointer-events:none}
+.creator-scene .art-frame img.creator-avatar{position:absolute;width:100%;height:100%;object-fit:contain;mix-blend-mode:normal;animation:creator-breathe 7s ease-in-out infinite;filter:drop-shadow(0 25px 28px #0005)}
+.creator-card{position:absolute;border:1px solid #ffffff24;background:linear-gradient(135deg,#32312eec,#181819ed);box-shadow:0 16px 42px #0005,inset 0 1px #ffffff0a;border-radius:16px;padding:17px 20px;color:#f1f0e9;backface-visibility:hidden;transform-style:preserve-3d;animation:creator-drift 7s ease-in-out infinite;font-family:'DM Sans',Arial,sans-serif}
+.creator-card-label{display:flex;align-items:center;justify-content:space-between;gap:15px;font-size:.75rem;line-height:1.4;letter-spacing:.1em;font-weight:500;color:#dddcd2}
+.creator-card-label>span{color:#a3a198;letter-spacing:0;font-family:'Space Grotesk',Arial,sans-serif;font-size:.875rem}
+.creator-code{width:195px;left:1%;top:12%;--layer:65px;--angle:-8deg;transform:translateZ(var(--layer)) rotate(var(--angle));animation-delay:-2s}
+.creator-code pre{margin:13px 0 0;font-size:.75rem;line-height:1.65;font-family:Consolas,monospace;color:#c4c1d3;white-space:pre}
+.creator-code pre b{color:#c4a1ff;font-weight:400}.creator-code pre i{color:#ffab7b;font-style:normal}
+.creator-design{width:166px;right:1%;top:7%;--layer:90px;--angle:9deg;transform:translateZ(var(--layer)) rotate(var(--angle));animation-delay:-4s}
+.creator-palette{display:flex;align-items:center;margin-top:16px;gap:5px}
+.creator-palette span{display:block;height:38px;width:38px;border-radius:50%;background:#ff6333;border:1px solid #ffffff20}
+.creator-palette span:nth-child(2){background:#9b7ded}.creator-palette span:nth-child(3){background:#f1e8d7}
+.creator-motion{width:210px;right:0;bottom:15%;--layer:110px;--angle:7deg;transform:translateZ(var(--layer)) rotate(var(--angle));animation-delay:-.8s}
+.creator-timeline{position:relative;display:grid;gap:6px;margin-top:17px;padding:3px 0}
+.creator-timeline>span{height:9px;border-radius:3px;background:linear-gradient(90deg,#9b7ded,#6b56a9);width:82%;display:block}
+.creator-timeline>span:nth-child(2){width:62%;margin-left:24%;background:linear-gradient(90deg,#ff6333,#ffac75)}
+.creator-timeline>span:nth-child(3){width:70%;background:#777c895e}
+.creator-timeline:after{content:'';position:absolute;top:-4px;bottom:-4px;left:15%;width:2px;background:#e9e9e2;box-shadow:0 0 8px #fff3;animation:creator-playhead 5s ease-in-out infinite alternate}
+.creator-caption{position:absolute;left:12%;bottom:4%;font-size:.75rem;line-height:1.7;letter-spacing:.18em;color:#bab7ad;transform:translateZ(10px)}
+.creator-caption span{color:var(--accent);margin:0 8px}
+@keyframes creator-breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes creator-drift{0%,100%{transform:translateZ(var(--layer)) translateY(0) rotate(var(--angle))}50%{transform:translateZ(var(--layer)) translateY(-10px) rotate(calc(var(--angle) + 2deg))}}
+@keyframes creator-playhead{to{left:85%}}
+html.motion-paused .creator-depth{transform:none;transition:none}
+html.motion-paused .creator-scene *,html.motion-paused .creator-scene *:after{animation-play-state:paused!important}
+@media(min-width:1500px){.hero-art.creator-scene{height:660px;top:35px}.creator-code{top:16%;left:5%}.creator-design{right:4%;top:12%}.creator-motion{right:2%;bottom:18%}}
+@media(max-width:1050px){.hero-art.creator-scene{width:57%;right:-8px;top:45px;height:455px}.creator-code{width:166px;left:-1%;top:8%;padding:13px}.creator-code pre{font-size:.75rem}.creator-design{width:137px;top:0;right:0;padding:13px}.creator-palette span{width:30px;height:30px}.creator-motion{width:174px;right:-3%;bottom:12%;padding:13px}.creator-caption{left:6%;bottom:0;font-size:.75rem;letter-spacing:.1em}}
+@media(max-width:700px){.header .brand.bd-logo{min-width:77px;min-height:45px;gap:8px}.header .bd-logo .bd-letters{font-size:2.8rem}.header .bd-logo .bd-spark{width:24px;height:24px;margin-left:2px}.header nav{gap:16px}.hero:has(.creator-scene) .hero-stage{padding-bottom:0}.hero-art.creator-scene{position:relative;right:auto;top:auto;bottom:auto;width:100%;height:390px;margin:0 auto 5px;pointer-events:none}.creator-figure{inset:1% -3% -1% 0}.creator-code{width:155px;top:5%;left:0;--layer:15px;--angle:-5deg;padding:12px}.creator-code pre{font-size:.75rem;line-height:1.5}.creator-design{width:128px;right:0;top:1%;--layer:25px;--angle:7deg;padding:12px}.creator-palette{gap:3px}.creator-palette span{height:29px;width:29px}.creator-motion{width:167px;bottom:8%;right:0;--layer:35px;--angle:5deg;padding:13px}.creator-caption{left:1%;bottom:1%;font-size:.75rem;letter-spacing:.04em}.creator-card-label{font-size:.75rem;gap:10px}.creator-caption span{margin-inline:4px}}
+@media(max-width:380px){.hero-art.creator-scene{height:345px}.creator-code{width:141px;left:-2%;padding:10px}.creator-design{width:120px;right:-1%;padding:10px}.creator-motion{width:154px;padding:10px}.creator-caption{font-size:.75rem;letter-spacing:0}.header nav{gap:12px}}
+@media(prefers-reduced-motion:reduce){.creator-depth{transform:none!important;transition:none!important}.creator-scene *, .creator-scene *:after{animation:none!important;transition:none!important}}

@@ -8,13 +8,15 @@
   <title>Bhagwat Dixit — Design. Code. Impact.</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ff6333'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-size='33' font-weight='700' fill='%23111110'%3Eb.%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="creator-v2.css">
   <script src="script.js" defer></script>
+  <script src="creator-v2.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="scroll-progress" aria-hidden="true"></div>
   <header class="header wrap">
-    <a class="brand" href="#home" aria-label="Bhagwat Dixit, home">bhagwat<span>✳</span></a>
+    <a class="brand bd-logo" href="#home" aria-label="Bhagwat Dixit, home"><span class="bd-letters" aria-hidden="true">bd</span><svg class="bd-spark" aria-hidden="true" viewBox="0 0 40 40" fill="none"><path d="M20 1V39M1 20H39M6.5 6.5L33.5 33.5M6.5 33.5L33.5 6.5" stroke="currentColor" stroke-width="1.8"/></svg></a>
     <nav aria-label="Main navigation">
       <a href="#work">Work <span>04</span></a>
       <a href="#about">About</a>
@@ -30,7 +32,20 @@
           <h1 id="hero-title"><span class="line"><span>Design.</span></span><span class="line"><span>Code.</span></span><span class="line accent"><span>Impact.</span></span></h1>
           <div class="hero-intro"><span class="tiny-cross" aria-hidden="true">✳</span><p>I’m Bhagwat Dixit. I turn ideas into<br class="desktop-break"> websites, visuals and brands that move.</p></div>
         </div>
-        <div class="hero-art" aria-hidden="true"><div class="art-frame"><img id="hero-art-image" src="hero-art.webp" alt="" width="1536" height="1024" fetchpriority="high"></div><span class="art-coordinate coordinate-top">CREATIVITY, IN EVERY DIMENSION.</span><span class="art-coordinate coordinate-bottom">DESIGN × TECHNOLOGY</span></div>
+        <div class="hero-art creator-scene" aria-hidden="true" data-bd-creator="v2">
+          <div class="art-frame">
+            <div class="creator-depth">
+              <div class="creator-figure"><img class="creator-avatar" src="creator-avatar-v2.webp" alt="" width="1024" height="1024" fetchpriority="high"></div>
+              <div class="creator-card creator-code"><div class="creator-card-label">DEVELOP <span>&lt;/&gt;</span></div><pre><b>const</b> idea = {
+  design: <i>true</i>,
+  impact: <i>'built in'</i>
+};</pre></div>
+              <div class="creator-card creator-design"><div class="creator-card-label">DESIGN <span>&#10035;</span></div><div class="creator-palette"><span></span><span></span><span></span></div></div>
+              <div class="creator-card creator-motion"><div class="creator-card-label">MOTION &amp; VIDEO <span>&#9654;</span></div><div class="creator-timeline"><span></span><span></span><span></span></div></div>
+              <div class="creator-caption">BUILD <span>&#183;</span> CREATE <span>&#183;</span> CONNECT</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="hero-bottom"><a class="text-link" href="#work">Explore selected work <span aria-hidden="true">↓</span></a><p>From the first idea<br>to the final pixel.</p><button id="motion-toggle" class="motion-toggle" type="button" aria-pressed="false"><span class="motion-bars" aria-hidden="true"><i></i><i></i><i></i></span><span id="motion-label">Pause motion</span></button></div>
     </section>
