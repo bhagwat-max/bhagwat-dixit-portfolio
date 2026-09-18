@@ -1,0 +1,55 @@
+/* Mobile uses the same motion language and keyframe timing as desktop. */
+@media(max-width:700px){
+  .ticker-track{animation:ticker 38s linear infinite!important;will-change:transform}
+  .ticker-track>span{font-size:1.2rem!important}
+  .ticker i{margin-inline:40px!important}
+
+  .hero h1 .line{animation:v6-title-depth 8s ease-in-out infinite!important}
+  .hero h1 .line:nth-child(2){animation-delay:-2.6s!important}
+  .hero h1 .line:nth-child(3){animation-delay:-5.2s!important}
+  .hero h1 .line>span{animation:line-in 1.3s var(--ease) both!important}
+  .hero h1 .line:nth-child(2)>span{animation-delay:.13s!important}
+  .hero h1 .line:nth-child(3)>span{animation-delay:.26s!important}
+  .tiny-cross{animation:rotate 24s linear infinite!important}
+  .motion-bars i{animation:bar 1s ease-in-out infinite alternate!important}
+  .motion-bars i:nth-child(2){animation-delay:.3s!important}.motion-bars i:nth-child(3){animation-delay:.6s!important}
+  .monogram span{animation:rotate 30s linear infinite!important}
+
+  .hero-art.creator-scene{pointer-events:auto!important;touch-action:pan-y}
+  .creator-scene .art-frame{transform:translate3d(var(--mobile-art-x,0px),var(--mobile-art-y,0px),0) rotate(var(--mobile-art-r,0deg))!important;transition:transform 1.3s var(--ease)!important}
+  .mobile-luxe .creator-depth{transform:rotateX(var(--creator-rx,0deg)) rotateY(var(--creator-ry,0deg))!important;transition:transform .5s cubic-bezier(.22,1,.36,1)!important}
+  .creator-scene .art-frame img.creator-avatar{animation:creator-breathe 7s ease-in-out infinite!important}
+  .creator-card{animation:creator-drift 7s ease-in-out infinite!important}
+  .creator-code{animation-delay:-2s!important}.creator-design{animation-delay:-4s!important}.creator-motion{animation-delay:-.8s!important}
+  .creator-timeline:after{animation:creator-playhead 5s ease-in-out infinite alternate!important}
+  .creator-orbit{animation:premium-orbit 12s ease-in-out infinite!important}
+  .creator-sphere{animation:premium-sphere 7.5s ease-in-out infinite!important}
+  .creator-prism{animation:premium-prism 9s ease-in-out infinite!important}
+
+  .header .bd-logo .bd-spark{animation:none!important}
+  .mobile-luxe .mobile-lux-item{opacity:0!important;transform:translateY(35px)!important;transition:opacity .9s var(--ease),transform .9s var(--ease)!important}
+  .mobile-luxe .mobile-lux-item.visible,.mobile-luxe .mobile-lux-item.is-mobile-visible{opacity:1!important;transform:none!important}
+  .motion-paused .mobile-lux-item{opacity:1!important;transform:none!important;transition:none!important}
+}
+
+@keyframes v6-title-depth{0%,100%{transform:translate3d(0,0,var(--depth)) rotateY(-1deg)}50%{transform:translate3d(0,var(--lift),calc(var(--depth) + 8px)) rotateY(1deg)}}
+
+/* The user explicitly requested full mobile motion. The visible Pause button remains the opt-out. */
+@media(max-width:700px) and (prefers-reduced-motion:reduce){
+  .ticker-track{animation:ticker 38s linear infinite!important}
+  .hero h1 .line{animation:v6-title-depth 8s ease-in-out infinite!important}
+  .hero h1 .line>span{animation:line-in 1.3s var(--ease) both!important}
+  .tiny-cross{animation:rotate 24s linear infinite!important}
+  .motion-bars i{animation:bar 1s ease-in-out infinite alternate!important}
+  .monogram span{animation:rotate 30s linear infinite!important}
+  .creator-scene .art-frame img.creator-avatar{animation:creator-breathe 7s ease-in-out infinite!important}
+  .creator-card{animation:creator-drift 7s ease-in-out infinite!important}
+  .creator-timeline:after{animation:creator-playhead 5s ease-in-out infinite alternate!important}
+  .creator-orbit{animation:premium-orbit 12s ease-in-out infinite!important}
+  .creator-sphere{animation:premium-sphere 7.5s ease-in-out infinite!important}
+  .creator-prism{animation:premium-prism 9s ease-in-out infinite!important}
+  .creator-scene .art-frame,.mobile-luxe .creator-depth{transition:transform .5s cubic-bezier(.22,1,.36,1)!important}
+  .mobile-luxe .mobile-lux-item{transition:opacity .9s var(--ease),transform .9s var(--ease)!important}
+}
+
+html.motion-paused .ticker-track,html.motion-paused .hero h1 .line,html.motion-paused .hero h1 .line>span,html.motion-paused .tiny-cross,html.motion-paused .motion-bars i,html.motion-paused .monogram span,html.motion-paused .creator-scene *,html.motion-paused .creator-scene *:before,html.motion-paused .creator-scene *:after{animation-play-state:paused!important}
