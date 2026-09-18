@@ -1,0 +1,28 @@
+/* Finger-driven hero parallax: mobile now mirrors the desktop mouse response. */
+@media(max-width:700px){
+  .mobile-touch-v7 .hero-stage{touch-action:pan-y}
+  .mobile-touch-v7 .hero h1{
+    transform:translate3d(0,var(--mob-title-y,0px),0)
+      rotateX(calc(1.5deg + var(--touch-title-rx,0deg)))
+      rotateY(calc(var(--mob-title-ry,0deg) + var(--touch-title-ry,0deg)))
+      scale(var(--touch-title-scale,1))!important;
+    transform-origin:38% 50%;
+    transition:transform .75s cubic-bezier(.22,1,.36,1),filter .3s ease!important;
+    will-change:transform
+  }
+  .mobile-touch-v7.hero-touch-active .hero h1{
+    transition:transform .08s linear,filter .2s ease!important;
+    filter:drop-shadow(0 19px 25px #0005)
+  }
+  .mobile-touch-v7.hero-touch-active .creator-scene .art-frame,
+  .mobile-touch-v7.hero-touch-active .creator-depth{
+    transition:transform .08s linear!important;
+    will-change:transform
+  }
+  .mobile-touch-v7:not(.hero-touch-active) .creator-scene .art-frame,
+  .mobile-touch-v7:not(.hero-touch-active) .creator-depth{
+    transition:transform .75s cubic-bezier(.22,1,.36,1)!important
+  }
+}
+
+html.motion-paused .hero h1{--touch-title-rx:0deg;--touch-title-ry:0deg;--touch-title-scale:1}
